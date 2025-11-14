@@ -208,8 +208,6 @@ function init() {
   createLegend();
 }
 
-// --- Funciones de iteración ---
-
 // --- Lógica para los paneles ---
 function setupPanelControls() {
   const toggleLeft = document.getElementById('toggle-left');
