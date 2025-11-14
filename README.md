@@ -16,38 +16,36 @@
 
 ## Introducción
 
-El proyecto consiste en la creación de un sistema solar en 3 dimensiones en el cuál se reprensentan los objetos (planetas, satélites y estrellas) que componen al mismo además de diferentes controles para manejar el modelo a gusto del usuario.
+El proyecto consiste en la visualización de datos en un mapa, concretamente, consiste en la visualización de varias paradas de transportes en la ciudad de Santa Cruz de Tenerife.
 
-En el modelo se han incluido los siguientes cuerpos pertenecientes al sistema solar:
+Los tipos de paradas de transporte del que se componen los datos son los siguientes:
 
-- **Sol:** El sol es la estrella central, responsable de la mayor parte de la masa del sistema solar así como la fuente de luz y calor que mantiene a todos los demás cuerpos en órbita.
-
-- **Planetas (Se dividen en dos grupos)**
-    - **Planetas interiores (rocosos):** Mercurio, Venus, la Tierra y Marte. Tienen una superficie sólida.
-    - **Planetas exteriores (gaseosos):** Júpiter, Saturno, Urano y Neptuno. Son significativamente más grandes que los interiores y están compuestos principalmente de gases como hidrógeno y metano.
-
-- **Satélites:** Son los cuerpos que orbitan alrededor de los planetas, comúnmente se llaman lunas.
+- **Aparcamiento Público.**
+- **Transporte Guagua.**
+- **Transporte Sociosanitario.**
+- **Transporte Taxi.**
+- **Otros:** Zonas de carga y descarga empresariales.
 
 ## Tecnologías Utilizadas
 
 Para realizar el modelo se ha hecho uso de JavaScript utilizando la librería three.js. 
 
-El proyecto se ha realizado en CodeSandbox y se ha exportado posteriormente a VSCode (para ejecutar el HTML en VSCode se ha hecho uso de la extensión *Live Server*).
+El proyecto se ha realizado en VSCode y se ha exportado posteriormente a CodeSandbox (para ejecutar el HTML en VSCode se ha hecho uso de la extensión *Live Server*).
 
 ## Dependencias
 
 En cuanto al código, lo primero que se ha realizado son las importaciones necesarias para el proyecto, como se ha mencionado antes, se ha utilizado **three.js**. Comentar que todo el código tiene cada una de sus partes principales con un comentario que define la funcionalidad de dicha parte.
 
 ```js
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import * as THREE from 'three';
+import { MapControls } from 'three/examples/jsm/controls/MapControls.js';
 ```
 
-## Modos de vista
+## Funcionamiento general
 
-Una vez con las dependencias importadas, se crean variables globales necesarias para su posterior uso dentro del código y, a posteriore, se crean las variables que controlan la cámara dado que el proyecto tiene tres modos principales de vista:
+El proyecto tiene controles sencillos siendo estos muy parecidos a una aplicación de estilo *"maps"* en donde clickando y arrastrando se puede desplazar por el territorio y con la rueda del ratón se acerca y aleja el punto de vista.
 
-- **Modo orbital/normal:** Es el modo por defecto, empieza **fijado en el sol**, con la **rueda del ratón** se puede **ampliar** y **alejar** el punto de vista y *clickando* y arrastrando el ratón se puede **rotar** sobre el escenario.
+- **Barra izquierda:** En esta barra, nada mas iniciar la página, se encuentra un mensaje de control para saber que datos se van a ver, adicionalmente, en la parte inferior, se ubica la autoría del proyecto. En el centro a la derecha se puede encontrar
 
 <h4 style="text-weight: bold; text-decoration: underline">Vistazo al modo orbital:</h4>
 
