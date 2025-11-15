@@ -10,6 +10,8 @@ let raycaster, mouse;
 let hoveredMarkerGroup = null;
 let selectedMarkerGroup = null;
 let activeLegendItem = null;
+let resizerLeftElement; // <-- AÑADIR ESTA LÍNEA
+let resizerRightElement; // <-- AÑADIR ESTA LÍNEA
 
 // --- Variables para Redimensionar Paneles ---
 let sidebarLeftElement; 
@@ -51,7 +53,9 @@ function init() {
 
   // Referencias a los paneles completos
   sidebarLeftElement = document.getElementById('sidebar-left');
-  legendContainerElement = document.getElementById('legend-container'); 
+  legendContainerElement = document.getElementById('legend-container');
+  resizerLeftElement = document.getElementById('resizer-left'); // <-- AÑADIR ESTA LÍNEA
+  resizerRightElement = document.getElementById('resizer-right'); // <-- AÑADIR ESTA LÍNEA 
 
   // Escena
   scene = new THREE.Scene();
@@ -218,12 +222,14 @@ function setupPanelControls() {
   // --- Lógica de Colapsar ---
   toggleLeft.addEventListener('click', () => {
     sidebarLeftElement.classList.toggle('collapsed');
+    resizerLeft.classList.toggle('collapsed'); // <-- AÑADE ESTA LÍNEA
     toggleLeft.innerHTML = sidebarLeftElement.classList.contains('collapsed') ? '»' : '«';
     onWindowResize(); // recalcular canvas
   });
 
   toggleRight.addEventListener('click', () => {
     legendContainerElement.classList.toggle('collapsed');
+    resizerRight.classList.toggle('collapsed'); // <-- AÑADE ESTA LÍNEA
     toggleRight.innerHTML = legendContainerElement.classList.contains('collapsed') ? '«' : '»';
     onWindowResize(); // recalcular canvas
   });
@@ -410,7 +416,6 @@ function updateSidebar(markerObject) {
   const centerButton = document.getElementById('center-on-point');
   if (centerButton) {
     centerButton.addEventListener('click', () => centerOnSelectedPoint(position));
-    content 
   }
 }
 
