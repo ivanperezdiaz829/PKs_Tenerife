@@ -1,5 +1,9 @@
 <h1 style="text-weight: bold;">DATOS GEOGRÁFICOS</h1>
 
+<h4 style="text-weight: bold; text-decoration: underline">Video corto:</h4>
+
+[![Ver en YouTube](https://img.youtube.com/vi/1j_fpWIv5VU/0.jpg)](https://www.youtube.com/watch?v=1j_fpWIv5VU)
+
 ## Índice
 
 - [Introducción](#introducción)
