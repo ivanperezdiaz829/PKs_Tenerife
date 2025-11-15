@@ -1,6 +1,4 @@
-<h1 style="text-weight: bold;">SOLAR SYSTEM</h1>
-
-<img src="Images/general_system_image.png">
+<h1 style="text-weight: bold;">DATOS GEOGRÁFICOS</h1>
 
 ## Índice
 
