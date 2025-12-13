@@ -1,0 +1,259 @@
+/* --- Configuración Global --- */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Evita barras de desplazamiento en la ventana principal */
+  font-family: Arial, sans-serif;
+  background-color: #222222;
+  color: white;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* --- Mapa --- */
+#canvas-container {
+  position: relative;
+  flex-grow: 1;
+  min-width: 0;
+  height: 100%; /* CRUCIAL: Fuerza altura completa */
+  background-color: #222; /* Color de fondo mientras carga */
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* --- Estructura de Paneles (Sidebar y Leyenda) --- */
+#sidebar-left,
+#legend-container {
+  flex-shrink: 0;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  transition: flex-basis 0.3s ease; /* Animación suave al redimensionar */
+}
+
+#sidebar-left {
+  flex-basis: 300px;
+  border-right: 1px solid #444;
+}
+
+#legend-container {
+  flex-basis: 250px;
+  border-left: 1px solid #444;
+}
+
+/* --- Contenido Interno (con Scroll) --- */
+#sidebar-content,
+#legend-wrapper {
+  flex-grow: 1;
+  overflow-y: auto; /* Scroll solo dentro del panel */
+  padding: 15px;
+}
+
+/* --- Clases para Colapsar --- */
+#sidebar-left.collapsed,
+#legend-container.collapsed {
+  flex-basis: 0 !important;
+  border: none;
+  padding: 0;
+}
+
+#sidebar-left.collapsed > *,
+#legend-container.collapsed > * {
+  display: none; /* Oculta el contenido al colapsar */
+}
+
+/* --- UI: Botones y Textos --- */
+.sidebar-button {
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+}
+.sidebar-button:hover {
+  background-color: #00b3ff;
+}
+
+h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  color: #0099ff;
+}
+
+.info-item {
+  margin-bottom: 8px;
+}
+.info-item strong {
+  display: block;
+  color: #adadad;
+  font-size: 0.9em;
+  margin-bottom: 2px;
+}
+.info-item a {
+  color: #00aaff;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+#sidebar-footer {
+  padding: 10px 15px;
+  background: #111;
+  border-top: 1px solid #444;
+  font-size: 0.9em;
+  color: #bdbdbd;
+}
+
+#sidebar-placeholder {
+  color: #808080;
+  font-style: italic;
+}
+
+/* --- Leyenda --- */
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+.legend-item:hover {
+  background-color: #333;
+}
+.legend-item.active {
+  background-color: #0099ff;
+  color: white;
+}
+
+.legend-item.all-button {
+  background-color: #555;
+  justify-content: center;
+  font-weight: bold;
+}
+.legend-item.all-button.active {
+  background-color: #0099ff;
+}
+
+.color-swatch {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fff;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* --- Barras de Redimensionado (Resizers) --- */
+.resizer {
+  flex-basis: 4px;
+  background: #333;
+  cursor: col-resize;
+  position: relative;
+  z-index: 20;
+  transition: background-color 0.2s;
+}
+.resizer:hover {
+  background: #0099ff;
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 30px;
+  background: #444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transform: translateY(-50%);
+  z-index: 25;
+}
+
+/* Posición específica de los botones toggle */
+#resizer-left .sidebar-toggle {
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+#resizer-right .sidebar-toggle {
+  right: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.resizer.collapsed {
+  flex-basis: 0 !important;
+  cursor: default;
+  background: none;
+}
+.resizer.collapsed .sidebar-toggle {
+  background: #666;
+}
+
+/* --- Loader --- */
+#loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  z-index: 1000;
+}
+
+/* --- Responsive (Móvil) --- */
+@media (max-width: 800px) {
+  #app-container {
+    flex-direction: column-reverse;
+  }
+
+  #sidebar-left,
+  #legend-container {
+    flex-basis: 200px !important;
+    width: 100%;
+    height: auto;
+    border: none;
+    border-top: 1px solid #444;
+  }
+
+  /* Ocultar resizers en móvil */
+  .resizer {
+    display: none;
+  }
+
+  /* Ajustar alturas en móvil */
+  #sidebar-content,
+  #legend-wrapper {
+    max-height: 30vh;
+  }
+}
